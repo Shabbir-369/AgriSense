@@ -84,9 +84,10 @@ main { flex: 1; }
   flex-shrink: 0;
 }
 
-.logo-icon { 
-  font-size: 1.5rem; 
-  width: 1.75em; height: 1.75em; /* Ensure it scales with text */}
+.logo-icon {
+  font-size: 1.5rem;
+  width: 1.75em; height: 1.75em; /* Ensure it scales with text */
+}
 .logo-text { letter-spacing: -0.3px; }
 
 .nav-links {
@@ -790,4 +791,49 @@ main { flex: 1; }
 @keyframes pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 6px currentColor; }
   50%       { opacity: 0.6; box-shadow: 0 0 12px currentColor; }
+}
+
+
+/* ── Active Nav Link ── */
+.nav-link-active {
+  color: var(--text-primary) !important;
+  background: rgba(74, 222, 128, 0.08) !important;
+  position: relative;
+}
+
+/* .nav-link-dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green-primary);
+  box-shadow: 0 0 6px var(--green-primary);
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+
+/* Mobile active */
+.mobile-link-active {
+  color: var(--green-primary) !important;
+  background: rgba(74, 222, 128, 0.06) !important;
+}
+
+.mobile-active-badge {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--green-primary);
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+.mobile-link {
+  display: flex;
+  align-items: center;
 }

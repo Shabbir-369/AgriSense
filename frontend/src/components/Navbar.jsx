@@ -1,9 +1,21 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const navLinks = [
+    { label: "Home",       to: "/" },
+    { label: "About Us",   to: "/about" },
+    { label: "Contact Us", to: "/contact" },
+  ];
+
+  const isActive = (to) => {
+    if (to === "/") return pathname === "/";
+    return pathname.startsWith(to);
+  };
 
   return (
     <nav className="navbar">
@@ -17,9 +29,17 @@ const Navbar = () => {
 
         {/* Desktop Nav Links */}
         <ul className="nav-links">
-          <li><Link to="/" className="nav-link">Home</Link></li>
-          <li><Link to="/about" className="nav-link">About Us</Link></li>
-          <li><Link to="/contact" className="nav-link">Contact Us</Link></li>
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className={`nav-link ${isActive(link.to) ? "nav-link-active" : ""}`}
+              >
+                {link.label}
+                {/* {isActive(link.to) && <span className="nav-link-dot"></span>} */}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Auth Buttons */}
@@ -37,9 +57,17 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="mobile-menu">
-          <Link to="/" className="mobile-link" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/about" className="mobile-link" onClick={() => setMenuOpen(false)}>About Us</Link>
-          <Link to="/contact" className="mobile-link" onClick={() => setMenuOpen(false)}>Contact Us</Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`mobile-link ${isActive(link.to) ? "mobile-link-active" : ""}`}
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+              {isActive(link.to) && <span className="mobile-active-badge">Current</span>}
+            </Link>
+          ))}
           <div className="mobile-auth">
             <button className="btn-login" onClick={() => { navigate("/login"); setMenuOpen(false); }}>Login</button>
             <button className="btn-signup" onClick={() => { navigate("/signup"); setMenuOpen(false); }}>Sign Up</button>
@@ -51,3 +79,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+

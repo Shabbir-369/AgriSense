@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import ScrollToTop from "./components/ScrollToTop";
 import "./index.css";
 
 // Placeholder pages — you'll build these in later phases
@@ -11,6 +12,7 @@ const Contact = () => <div style={{ padding: "100px", textAlign: "center", color
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
