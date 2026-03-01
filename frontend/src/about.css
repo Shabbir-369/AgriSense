@@ -1,0 +1,480 @@
+/* ============================================================
+   AgriSense — About Page Styles
+   Extends the base index.css design system
+   ============================================================ */
+
+/* ── About Hero ── */
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 24px 90px;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74,222,128,0.08) 0%, transparent 70%);
+}
+
+.about-hero-bg-line {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(74,222,128,0.15), transparent);
+  pointer-events: none;
+}
+.about-hero-bg-line-2 {
+  left: 30%;
+  opacity: 0.4;
+}
+
+.about-hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  animation: fadeUp 0.7s ease both;
+}
+
+.about-hero-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -1.2px;
+  color: var(--text-primary);
+  margin: 16px 0 22px;
+}
+
+.about-hero-highlight {
+  color: var(--green-primary);
+  position: relative;
+}
+.about-hero-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 2px;
+  background: var(--green-primary);
+  opacity: 0.35;
+  border-radius: 2px;
+}
+
+.about-hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 580px;
+  margin: 0 auto 36px;
+}
+
+.about-hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+
+/* ── Stats Strip ── */
+.about-stats-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.about-stats-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 32px 16px;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.about-stat:last-child { border-right: none; }
+.about-stat:hover { background: rgba(74,222,128,0.03); }
+
+.about-stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--green-primary);
+  letter-spacing: -1px;
+}
+
+.about-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .about-stats-container { grid-template-columns: repeat(2, 1fr); }
+  .about-stat:nth-child(2) { border-right: none; }
+  .about-stat:nth-child(3) { border-top: 1px solid var(--border); }
+  .about-stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+}
+
+
+/* ── Mission Section ── */
+.about-mission {
+  padding: 100px 0;
+  background: linear-gradient(180deg, var(--bg-base) 0%, #0d150d 100%);
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.mission-text .section-tag { margin-bottom: 14px; display: inline-block; }
+
+.mission-para {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.mission-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.mission-pill {
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border-light);
+  background: rgba(74,222,128,0.05);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: border-color 0.2s, color 0.2s;
+}
+.mission-pill:hover { border-color: var(--green-primary); color: var(--green-primary); }
+
+/* Mission visual card */
+.mission-visual { display: flex; justify-content: flex-end; }
+
+.mission-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-card), 0 0 60px rgba(74,222,128,0.05);
+}
+
+.mission-card-label {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 14px;
+}
+
+.mission-quote {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+  border-left: 2px solid var(--green-primary);
+  padding-left: 14px;
+  margin-bottom: 24px;
+}
+
+.mission-card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 24px;
+}
+
+.mission-metrics { display: flex; flex-direction: column; gap: 12px; }
+
+.mm-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.mm-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.mm-dot-green  { background: var(--green-primary); box-shadow: 0 0 6px var(--green-primary); }
+.mm-dot-blue   { background: var(--blue-accent);   box-shadow: 0 0 6px var(--blue-accent); }
+.mm-dot-amber  { background: var(--amber-accent);  box-shadow: 0 0 6px var(--amber-accent); }
+.mm-dot-purple { background: #a78bfa;              box-shadow: 0 0 6px #a78bfa; }
+
+@media (max-width: 900px) {
+  .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+  .mission-visual { justify-content: center; }
+  .section-title[style] { text-align: center !important; }
+}
+
+
+/* ── Timeline ── */
+.about-timeline {
+  padding: 100px 0;
+  background: #0d150d;
+}
+
+.timeline-track {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 64px 28px 1fr;
+  gap: 0 20px;
+  align-items: flex-start;
+  animation: fadeUp 0.5s ease both;
+}
+
+.timeline-year {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green-primary);
+  padding-top: 3px;
+  text-align: right;
+}
+
+.timeline-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--green-primary);
+  background: var(--bg-base);
+  box-shadow: 0 0 8px rgba(74,222,128,0.3);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.timeline-line {
+  width: 1px;
+  flex: 1;
+  min-height: 48px;
+  background: linear-gradient(180deg, var(--green-primary), var(--border));
+  margin: 6px 0;
+}
+
+.timeline-body {
+  padding-bottom: 40px;
+}
+
+.timeline-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+
+/* ── Values ── */
+.about-values {
+  padding: 100px 0;
+  background: var(--bg-base);
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.value-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.value-card:hover {
+  border-color: var(--border-light);
+  transform: translateY(-3px);
+}
+
+.value-icon { font-size: 1.8rem; display: block; margin-bottom: 14px; }
+
+.value-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.value-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 580px) { .values-grid { grid-template-columns: 1fr; } }
+
+
+/* ── Team ── */
+.about-team {
+  padding: 100px 0;
+  background: #0d150d;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.team-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 28px 22px 32px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.team-card:hover {
+  border-color: var(--member-accent, var(--green-primary));
+  transform: translateY(-4px);
+}
+
+.team-avatar {
+  width: 60px; height: 60px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+}
+
+.team-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.team-role {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--member-accent, var(--green-primary));
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 12px;
+}
+
+.team-bio {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.team-accent-line {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--member-accent, var(--green-primary));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.team-card:hover .team-accent-line { opacity: 1; }
+
+@media (max-width: 900px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .team-grid { grid-template-columns: 1fr; } }
+
+
+/* ── CTA Banner ── */
+.about-cta-banner {
+  padding: 80px 0 100px;
+  background: var(--bg-base);
+}
+
+.cta-banner-inner {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 72px 40px;
+}
+
+.cta-banner-glow {
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(74,222,128,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-banner-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 16px 0 16px;
+}
+
+.cta-banner-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.cta-banner-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .cta-banner-inner { padding: 48px 24px; }
+}
