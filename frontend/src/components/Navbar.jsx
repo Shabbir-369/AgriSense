@@ -10,7 +10,8 @@ const Navbar = () => {
       <div className="navbar-container">
         {/* Logo */}
         <Link to="/" className="navbar-logo">
-          <span className="logo-icon">🌱</span>
+          {/* <span className="logo-icon">🌱</span> */}
+          <span className="logo-icon"><img src="./src/assets/logo.png" alt="🌱" /></span>
           <span className="logo-text">AgriSense</span>
         </Link>
 
