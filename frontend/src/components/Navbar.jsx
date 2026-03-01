@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="navbar-logo">
           {/* <span className="logo-icon">🌱</span> */}
-          <span className="logo-icon"><img src="./src/assets/logo.png" alt="🌱" /></span>
+          <span className="logo-icon"><img src={logo} alt="🌱" /></span>
           <span className="logo-text">AgriSense</span>
         </Link>
 
