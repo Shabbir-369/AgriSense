@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../auth.css";
+import logo from "../assets/logo.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const Signup = () => {
         <div className="auth-visual-content">
           <Link to="/" className="auth-logo auth-logo-visual">
             <span className="auth-logo-icon">
-              <img src="./src/assets/logo.png" alt="🌱" />
+              <img src={logo} alt="🌱" />
             </span>
             <span className="auth-logo-text">AgriSense</span>
           </Link>
