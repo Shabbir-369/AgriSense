@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 import "../auth.css";
 import logo from "../assets/logo.png";
+// import axios from "axios";
+// import { API_ENDPOINTS } from "../config/api";
+import { loginUser } from "../services/api";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -15,22 +21,87 @@ const Login = () => {
     setError("");
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     setLoading(true);
+  //     setError("");
+
+  //     const res = await axios.post(`${API_ENDPOINTS.LOGIN}`, {
+  //       email: form.email,
+  //       password: form.password,
+  //     });
+
+  //     const { token, role, full_name, email } = res.data; // email now included
+
+  //     // Decode token to get user ID
+  //     const decoded = jwtDecode(token);
+  //     const userData = {
+  //       id: decoded.id,
+  //       role,
+  //       full_name,
+  //       email, // use email from response
+  //     };
+
+  //     login(token, userData);
+
+  //     if (role === "admin") {
+  //       navigate("/admin-dashboard");
+  //     } else if (role === "expert") {
+  //       navigate("/expert-dashboard");
+  //     } else {
+  //       navigate("/farmer-dashboard");
+  //     }
+  //   } catch (error) {
+  //     setError(error.response?.data?.message || "Invalid credentials");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
+  try {
     setLoading(true);
     setError("");
-    // TODO: POST /api/auth/login
-    // const res = await fetch("/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    // const data = await res.json();
-    // if (!res.ok) { setError(data.message); setLoading(false); return; }
-    // localStorage.setItem("token", data.token);
-    // navigate based on role: data.role
-    setTimeout(() => {
-      setLoading(false);
-      // Placeholder — replace with real role-based redirect
-      setError("Backend not connected yet. Add your API route to complete login.");
-    }, 1000);
-  };
+
+    const { data } = await loginUser({
+      email: form.email,
+      password: form.password,
+    });
+
+    const { token, role, full_name, email } = data;
+
+    // Decode token to get user ID
+    const { id } = jwtDecode(token);
+
+const userData = {
+  id,
+  role,
+  full_name,
+  email,
+};
+
+    login(token, userData);
+
+    if (role === "admin") {
+      navigate("/admin-dashboard");
+    } else if (role === "expert") {
+      navigate("/expert-dashboard");
+    } else {
+      navigate("/farmer-dashboard");
+    }
+
+  } catch (error) {
+    setError(error.response?.data?.message || "Invalid credentials");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="auth-page">

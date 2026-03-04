@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../contact.css";
+// import { sendContactMessage } from "../services/api";
+// import axios from "axios";
+// import { API_ENDPOINTS } from "../config/api";
+import { sendContactMessage } from "../services/api";
 
 const contactInfo = [
   {
@@ -61,11 +65,47 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: wire to backend POST /api/contact
+//   const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   try {
+//     await axios.post(`${API_ENDPOINTS.CONTACT}`, {
+//   name: form.name,
+//   email: form.email,
+//   role: form.role,
+//   subject: "Website Inquiry",
+//   message: form.message
+// });
+
+//     setSubmitted(true);
+//     // setForm({ name: "", email: "", role: "", message: "" });
+
+//   } catch (error) {
+//   console.error(error);
+//   alert("Failed to send message");
+// }
+// };
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    await sendContactMessage({
+      ...form,
+      subject: "Website Inquiry"
+    });
+
     setSubmitted(true);
-  };
+
+  } catch (error) {
+    console.error("Contact form error:", error);
+    alert("Failed to send message");
+  }
+};
+
+
 
   const toggleFaq = (i) => setOpenFaq(openFaq === i ? null : i);
 

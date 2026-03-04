@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../auth.css";
 import logo from "../assets/logo.png";
+// import axios from "axios";
+// import { API_ENDPOINTS } from "../config/api";
+import { registerUser } from "../services/api";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -37,27 +40,79 @@ const Signup = () => {
 
   const strength = getPasswordStrength(form.password);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (form.password !== form.confirm_password) {
-      setError("Passwords do not match.");
-      return;
-    }
-    if (form.password.length < 8) {
-      setError("Password must be at least 8 characters.");
-      return;
-    }
+//   const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   if (form.password !== form.confirm_password) {
+//     setError("Passwords do not match.");
+//     return;
+//   }
+
+//   if (form.password.length < 8) {
+//     setError("Password must be at least 8 characters.");
+//     return;
+//   }
+
+//   try {
+//     setLoading(true);
+//     setError("");
+
+//     const res = await axios.post(
+//       `${API_ENDPOINTS.REGISTER}`,
+//       {
+//         full_name: form.full_name,
+//         email: form.email,
+//         password: form.password,
+//         role: form.role,
+//       }
+//     );
+
+//     alert("Registration successful ✅");
+//     navigate("/login");
+
+//   } catch (error) {
+//     setError(error.response?.data?.message || "Registration failed");
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (form.password !== form.confirm_password) {
+    setError("Passwords do not match.");
+    return;
+  }
+
+  if (form.password.length < 8) {
+    setError("Password must be at least 8 characters.");
+    return;
+  }
+
+  try {
     setLoading(true);
-    // TODO: POST /api/auth/register
-    // const res = await fetch("/api/auth/register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ full_name: form.full_name, email: form.email, password: form.password, role: form.role }) });
-    // const data = await res.json();
-    // if (!res.ok) { setError(data.message); setLoading(false); return; }
-    // navigate to login or dashboard
-    setTimeout(() => {
-      setLoading(false);
-      setError("Backend not connected yet. Add your API route to complete registration.");
-    }, 1000);
-  };
+    setError("");
+
+    await registerUser({
+      full_name: form.full_name,
+      email: form.email,
+      password: form.password,
+      role: form.role,
+    });
+
+    alert("Registration successful ✅");
+    navigate("/login");
+
+  } catch (error) {
+    setError(error.response?.data?.message || "Registration failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   const roles = [
     { value: "farmer", icon: "🌾", label: "Farmer", desc: "Monitor soil & get expert advice" },
@@ -112,7 +167,7 @@ const Signup = () => {
           {/* Mobile logo (hidden on desktop) */}
           <Link to="/" className="auth-logo auth-logo-mobile">
             <span className="auth-logo-icon">
-              <img src="./src/assets/logo.png" alt="🌱" />
+              <img src={logo} alt="🌱" />
             </span>
             <span className="auth-logo-text">AgriSense</span>
           </Link>
@@ -275,9 +330,9 @@ const Signup = () => {
 
             <p className="auth-terms">
               By signing up, you agree to our{" "}
-              <Link to="/terms" className="auth-switch-link">Terms of Service</Link>{" "}
+              <Link to="/terms-of-service" className="auth-switch-link">Terms of Service</Link>{" "}
               and{" "}
-              <Link to="/privacy" className="auth-switch-link">Privacy Policy</Link>.
+              <Link to="/privacy-policy" className="auth-switch-link">Privacy Policy</Link>.
             </p>
           </form>
 
