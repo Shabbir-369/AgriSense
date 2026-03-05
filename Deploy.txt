@@ -1,0 +1,50 @@
+When deploying if using brevo, make sure to set the environment variable for the API key: BREVO_API_KEY, and also change the email.js file to use the brevo API instead of the previous one.
+
+also change the the credentials in the .env of backend for database configuration to match the production database credentials.
+
+example for the .env in backend:
+
+{
+    for local development:
+
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=agrisense
+JWT_SECRET=supersecretkey123
+
+# DATABASE_URL=
+# PORT=5000
+# JWT_SECRET=supersecretkey123
+
+
+for mail configuration:
+
+# EMAIL_PROVIDER=console   # or smtp
+EMAIL_PROVIDER=smtp  
+
+# Only needed if EMAIL_PROVIDER=smtp
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=yourmail@gmail.com
+SMTP_PASS=mail pass key 
+SMTP_FROM=noreply@agrisense.in
+
+
+# when sending with Brevo, you would use the following environment variable for the API key:
+
+# BREVO_API_KEY=
+
+}
+
+
+.env for frontend:
+
+{
+    REACT_APP_API_URL=http://localhost:5000/api
+}
+
+
+also change the db.js file in the backend to use the production database credentials instead of the local ones.

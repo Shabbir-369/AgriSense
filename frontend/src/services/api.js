@@ -100,3 +100,41 @@ export const changePassword = (data) => api.patch("/user/change-password", data)
 export const deleteAccount = () => api.delete("/user/account");
 
 export default api;
+
+
+
+
+
+
+// ... existing imports and code
+
+// ─── Email Verification ─────────────────────────────────────────────
+
+/**
+ * Verify email with OTP.
+ * @param {{ email: string, otp: string }} data
+ */
+export const verifyEmail = (data) => api.post("/auth/verify-email", data);
+
+/**
+ * Resend verification OTP.
+ * @param {{ email: string }} data
+ */
+export const resendVerification = (data) => api.post("/auth/resend-verification", data);
+
+// ─── Password Reset ─────────────────────────────────────────────────
+
+/**
+ * Request password reset OTP.
+ * @param {{ email: string }} data
+ */
+export const forgotPassword = (data) => api.post("/auth/forgot-password", data);
+
+/**
+ * Reset password using OTP.
+ * @param {{ email: string, otp: string, new_password: string }} data
+ */
+export const resetPassword = (data) => api.post("/auth/reset-password", data);
+
+
+export const verifyResetOtp = (data) => api.post("/auth/verify-reset-otp", data);

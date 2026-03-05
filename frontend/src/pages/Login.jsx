@@ -95,9 +95,20 @@ const userData = {
       navigate("/farmer-dashboard");
     }
 
-  } catch (error) {
-    setError(error.response?.data?.message || "Invalid credentials");
-  } finally {
+  } 
+  // catch (error) {
+  //   setError(error.response?.data?.message || "Invalid credentials");
+  // }
+  catch (error) {
+  const data = error.response?.data;
+  if (data?.needsVerification) {
+    // Redirect to verification page with email
+    navigate("/verify-email", { state: { email: data.email } });
+  } else {
+    setError(data?.message || "Invalid credentials");
+  }
+}
+   finally {
     setLoading(false);
   }
 };
@@ -147,10 +158,14 @@ const userData = {
             </div>
 
             <div className="form-group">
-              <div className="label-row">
+              {/* <div className="label-row">
                 <label className="form-label" htmlFor="password">Password</label>
                 <button type="button" className="forgot-link">Forgot password?</button>
-              </div>
+              </div> */}
+              <div className="label-row">
+  <label className="form-label" htmlFor="password">Password</label>
+  <Link to="/forgot-password" className="forgot-link">Forgot password?</Link>
+</div>
               <div className="input-wrap">
                 <span className="input-icon">🔒</span>
                 <input

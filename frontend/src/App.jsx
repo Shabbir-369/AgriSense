@@ -10,6 +10,10 @@ import PrivacyPolicy   from "./pages/PrivacyPolicy";
 import TermsOfService  from "./pages/TermsofService.jsx";
 import "./index.css";
 
+import VerifyEmail from "./pages/VerifyEmail";
+import ForgotPassword from "./pages/ForgotPassword";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +27,8 @@ function App() {
         <Route path="/farmer-dashboard"  element={<FarmerDashboard />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );

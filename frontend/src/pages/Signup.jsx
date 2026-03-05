@@ -102,8 +102,18 @@ const handleSubmit = async (e) => {
       role: form.role,
     });
 
-    alert("Registration successful ✅");
-    navigate("/login");
+//     alert("Registration successful ✅");
+//     navigate("/login");
+
+//   } catch (error) {
+//     setError(error.response?.data?.message || "Registration failed");
+//   } finally {
+//     setLoading(false);
+//   }
+// };
+
+// ✅ Redirect to verification page with email
+    navigate("/verify-email", { state: { email: form.email } });
 
   } catch (error) {
     setError(error.response?.data?.message || "Registration failed");

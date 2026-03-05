@@ -1,8 +1,9 @@
 // simulator.js
 // Run this with: node simulator.js
 
-const API_URL = "https://agrisense-backend-qtjl.onrender.com/api/sensors/data"; 
-const MAC_ADDRESS = "A4:CF:12:BE:9B:01"; // Make sure this matches a sensor in your DB!
+// const API_URL = "https://agrisense-backend-qtjl.onrender.com/api/sensors/data"; 
+const API_URL = "http://localhost:5000/api/sensors/data"; 
+const MAC_ADDRESS = "25:3A:42:CE:B7:FF"; // Make sure this matches a sensor in your DB!
 
 console.log("🌱 AgriSense ESP32 Simulator Started...");
 
